@@ -1,0 +1,179 @@
+---
+---
+
+<header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  <div class="absolute inset-0 z-0 animate-bg-reveal">
+    <div class="absolute inset-0 bg-deep-violet-gradient opacity-90 mix-blend-multiply z-10"></div>
+    
+    <img
+      alt="Modelo High Fashion Lashes"
+      class="w-full h-full object-cover object-center parallax-bg animate-hero-img"
+      src="/images/bg-lashes.webp" 
+      loading="eager"
+    />
+    
+    <div class="absolute inset-0 geometric-bg opacity-20 z-100 pointer-events-none"></div>
+    
+    <div class="absolute top-1/4 left-10 w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-600 rounded-full blur-sm opacity-20 floating-obj z-20 animate-slide-right"></div>
+    <div class="absolute bottom-1/4 right-10 w-32 h-32 bg-gradient-to-bl from-gray-100 to-gray-500 rounded-full blur-md opacity-10 floating-obj-delayed z-20 animate-slide-left"></div>
+  </div>
+  
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
+      
+      <div class="lg:col-span-7 space-y-8">
+        <div class="reveal-item inline-flex items-center space-x-2 px-4 py-1.5 border border-white/20 bg-white/5 backdrop-blur-md rounded-full mb-4 opacity-0" style="animation-delay: 0.2s;">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#D946EF]"></span>
+          <span class="text-xs uppercase tracking-widest text-white/90">Inscripciones Abiertas 2026</span>
+        </div>
+
+        <h1 class="reveal-item text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter text-white drop-shadow-2xl opacity-0" style="animation-delay: 0.4s;">
+          MASTER<br />
+          <span class="chrome-text text-glow">LASH</span> ARTIST
+        </h1>
+
+        <p class="reveal-item text-xl md:text-2xl font-light text-slate-300 max-w-xl border-l-2 border-primary pl-6 py-2 bg-gradient-to-r from-white/5 to-transparent opacity-0" style="animation-delay: 0.6s;">
+          Eleva tu técnica a un nivel editorial. Formación 3D inmersiva para artistas que buscan la perfección.
+        </p>
+
+        <div class="reveal-item pt-8 flex flex-col sm:flex-row gap-6 opacity-0" style="animation-delay: 0.8s;">
+          <button class="relative group overflow-hidden bg-white text-charcoal px-10 py-4 font-bold tracking-widest uppercase text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <span class="relative z-10">Ver Programas</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-100 via-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </button>
+
+          <button class="flex items-center justify-center md:justify-start space-x-4 text-slate-300 hover:text-white transition group">
+            <div class="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center group-hover:border-primary transition group-hover:shadow-glow bg-white/5 backdrop-blur-sm">
+              <span class="material-symbols-outlined text-3xl">play_arrow</span>
+            </div>
+            <span class="uppercase tracking-widest text-sm font-medium">Ver Showreel</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 hidden lg:flex flex-col items-center justify-center relative h-[600px] reveal-item opacity-0" style="animation-delay: 1.1s;">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+        
+        <div class="relative z-10 group [perspective:1000px] floating-obj">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-purple-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          
+          <img 
+            src="/images/diploma.svg" 
+            alt="Certificación Oficial Lash Expert" 
+            class="w-full max-w-[450px] h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)] transform transition-all duration-700 group-hover:[transform:rotateY(-12deg)_rotateX(5deg)_scale(1.02)]"
+          />
+
+          <div class="absolute -bottom-6 -right-6 w-20 h-20 bg-charcoal border border-white/20 rounded-full flex items-center justify-center shadow-chrome z-20 animate-bounce-slow">
+            <span class="material-symbols-outlined text-primary text-4xl">verified</span>
+          </div>
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full pointer-events-none group-hover:border-primary/20 transition-colors duration-700"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-charcoal to-transparent z-10"></div>
+</header>
+
+<style>
+  /* Animación imagen hero optimizada (solo transform + opacity) */
+  @keyframes heroImgScale {
+    from {
+      transform: scale(1.15);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  /* Reveal suave sin blur pesado */
+  @keyframes revealSmooth {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translate3d(-40px, 0, 0);
+    }
+    to {
+      opacity: 0.2;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translate3d(40px, 0, 0);
+    }
+    to {
+      opacity: 0.1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Clases optimizadas */
+  .animate-hero-img {
+    animation: heroImgScale 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .reveal-item {
+    animation: revealSmooth 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .animate-slide-right {
+    animation: slideRight 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .animate-slide-left {
+    animation: slideLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Bounce más suave y menos brusco */
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -6px, 0);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Background reveal premium */
+@keyframes bgReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.animate-bg-reveal {
+  animation: bgReveal 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+</style>

@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Programs from '../components/Programs.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import Mentor from '../components/Mentor.astro';
+import Testimonials from '../components/Testimonials.astro';
+
+const pageTitle = "Lash Expert | Academy & Master Artist";
+const pageDescription = "Formación editorial de alto nivel en extensiones de pestañas con Milagro Ciancia.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+    <main class="relative">
+      <Hero />
+      <Stats />
+      <Programs />
+      <BookingCTA />
+      <Mentor />
+      <Testimonials />
+    </main>
+</Layout>

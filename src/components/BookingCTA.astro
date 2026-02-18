@@ -1,0 +1,125 @@
+---
+// BookingCTA.astro - Versión Corregida y Auto-ejecutable
+---
+
+<section 
+  id="booking-section" 
+  class="py-32 relative overflow-hidden bg-[#0a0a0a] min-h-[600px] flex items-center"
+>
+  <div class="absolute inset-0 bg-stage-gradient z-0 opacity-0 animate-fade-in" style="animation-delay: 0.2s; animation-fill-mode: forwards;"></div>
+  
+  <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-50 z-30 pointer-events-none"></div>
+  
+  <div class="max-w-6xl mx-auto px-4 relative z-30 w-full">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+      
+      <div class="lg:w-1/2 text-left space-y-8">
+        <div class="reveal-item inline-flex items-center space-x-2 px-3 py-1 rounded border border-yellow-500/30 bg-yellow-500/5 text-yellow-500 text-xs font-bold uppercase tracking-widest opacity-0">
+          <span class="material-symbols-outlined text-sm">event_seat</span>
+          <span>Cupos Limitados</span>
+        </div>
+
+        <h2 class="reveal-item text-5xl lg:text-6xl font-display font-bold text-white leading-tight tracking-tighter opacity-0">
+          Reserva tu lugar <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 filter drop-shadow-lg">en el escenario.</span>
+        </h2>
+
+        <p class="reveal-item text-slate-400 leading-relaxed text-lg font-light max-w-lg italic opacity-0">
+          La excelencia requiere atención exclusiva. Trabajamos con grupos reducidos para garantizar tu aprendizaje. Asegura tu lugar con el 50% y recibe tu kit exclusivo.
+        </p>
+
+        <div class="reveal-item pt-4 opacity-0">
+          <button class="bg-gradient-to-r from-primary to-secondary px-8 py-4 rounded text-white font-bold text-lg hover:shadow-[0_0_30px_rgba(217,70,239,0.5)] transition duration-300 transform hover:-translate-y-1 border border-white/10 relative overflow-hidden group">
+            <span class="relative z-10">Reservar Ahora - 50% OFF</span>
+            <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-[110%] group-hover:animate-[shine_0.7s_ease-in-out]"></div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="lg:w-1/2 relative h-[400px] w-full flex items-center justify-center">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[400px] h-[100px] bg-primary/20 blur-[60px] rounded-[100%]"></div>
+        
+        <div class="reveal-scale relative w-full max-w-md h-auto z-20 group [perspective:1000px] opacity-0">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-primary/30 to-purple-500/30 blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 rounded-full"></div>
+          <img 
+            src="/images/kit.svg" 
+            alt="Kit Profesional" 
+            class="w-full h-auto drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)] transform transition-all duration-700 group-hover:[transform:rotateY(-10deg)_rotateX(5deg)_scale(1.02)] floating-obj"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animaciones Base */
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  @keyframes revealScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes shine {
+    100% { transform: skewX(-12deg) translateX(220%); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 0.6; }
+  }
+
+  /* Clases de Control */
+  .reveal-item, .reveal-scale {
+    animation-fill-mode: forwards;
+    animation-play-state: paused; /* Importante: Espera al JS */
+  }
+
+  /* Cuando el padre tiene la clase .active, las animaciones arrancan */
+  .active .reveal-item {
+    animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: running;
+  }
+
+  .active .reveal-scale {
+    animation: revealScale 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-play-state: running;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 2s ease-out forwards;
+  }
+
+  /* Tiempos escalonados */
+  .active .reveal-item:nth-child(1) { animation-delay: 0.1s; }
+  .active .reveal-item:nth-child(2) { animation-delay: 0.3s; }
+  .active .reveal-item:nth-child(3) { animation-delay: 0.5s; }
+  .active .reveal-item:nth-child(4) { animation-delay: 0.7s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+  .floating-obj { animation: float 6s ease-in-out infinite; }
+</style>
+
+<script>
+  // Script autónomo para activar las animaciones
+  const observerOptions = { threshold: 0.1 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target); // Solo animar una vez
+      }
+    });
+  }, observerOptions);
+
+  const target = document.querySelector('#booking-section');
+  if (target) observer.observe(target);
+</script>

@@ -1,0 +1,150 @@
+---
+/**
+ * Mentor Component - Lash Expert
+ * Animaciones cinematográficas con revelado por capas.
+ */
+---
+
+<section 
+  id="mentor-section" 
+  class="pt-32 bg-charcoal/50 relative overflow-hidden min-h-[700px] flex items-center"
+>
+  <div class="absolute inset-0 geometric-bg opacity-5 pointer-events-none"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-center">
+      
+      <div class="lg:col-span-5 lg:col-start-2 z-20 flex flex-col justify-center order-2 lg:order-1">
+        <div class="relative mb-8">
+          <span class="reveal-bg-text absolute -top-16 -left-16 text-[120px] md:text-[180px] font-display font-bold text-white/5 z-0 select-none leading-none opacity-0">
+            MILI
+          </span>
+          
+          <h4 class="reveal-item text-primary font-bold tracking-[0.3em] uppercase mb-2 relative z-10 text-sm opacity-0">
+            Tu Mentora
+          </h4>
+          <h2 class="reveal-item text-5xl md:text-6xl font-display font-bold text-white relative z-10 leading-tight opacity-0">
+            Milagro <br /> <span class="chrome-text">Ciancia.</span>
+          </h2>
+        </div>
+
+        <div class="reveal-item space-y-6 text-slate-300 font-light text-lg relative z-10 glass-card-3d p-8 rounded-xl border-l-4 border-primary opacity-0 shadow-2xl">
+          <p class="italic">
+            "Mi misión no es solo enseñarte a poner pestañas, es enseñarte a construir un imperio de belleza con estándares internacionales."
+          </p>
+          <p class="text-base">
+            Con más de <strong class="text-white">5 años de experiencia</strong> y múltiples certificaciones, he desarrollado un método único que combina la precisión técnica con una visión artística y de negocios.
+          </p>
+        </div>
+
+        <div class="reveal-item flex gap-12 mt-10 relative z-10 opacity-0">
+          <div class="group">
+            <span class="block text-4xl font-display font-bold text-white text-glow group-hover:scale-110 transition-transform duration-300">5+</span>
+            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Años Exp.</span>
+          </div>
+          <div class="group">
+            <span class="block text-4xl font-display font-bold text-white text-glow group-hover:scale-110 transition-transform duration-300">15+</span>
+            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Diplomas</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lg:col-span-6 relative mt-12 lg:mt-0 order-1 lg:order-2 flex justify-center">
+        <div class="reveal-portrait relative z-10 group [perspective:1000px] opacity-0">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-purple-600 to-primary opacity-20 blur-xl rounded-full group-hover:opacity-40 transition duration-700"></div>
+          
+          <img
+            alt="Instructora Milagro Ciancia"
+            class="w-full max-w-md h-auto rounded-lg relative z-10 border border-white/10 shadow-3d transform transition duration-700 group-hover:[transform:rotateY(12deg)]"
+            src="/images/mentor.svg" 
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Keyframes Cinematográficos */
+  @keyframes revealUpBlur {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px);
+      filter: blur(15px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes revealPortrait {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateX(20px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 0.05; } /* Para el texto de fondo MILI */
+  }
+
+  /* Control de Animación */
+  .reveal-item, .reveal-bg-text, .reveal-portrait {
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+  }
+
+  /* Activación por Clase Active */
+  .active .reveal-item {
+    animation: revealUpBlur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: running;
+  }
+
+  .active .reveal-bg-text {
+    animation: fadeIn 2s ease-out forwards;
+    animation-play-state: running;
+  }
+
+  .active .reveal-portrait {
+    animation: revealPortrait 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: running;
+  }
+
+  /* Delays Escalonados */
+  .active .reveal-item:nth-child(1) { animation-delay: 0.2s; }
+  .active .reveal-item:nth-child(2) { animation-delay: 0.4s; }
+  .active .reveal-item:nth-child(3) { animation-delay: 0.6s; }
+  .active .reveal-item:nth-child(4) { animation-delay: 0.8s; }
+</style>
+
+<script>
+  /**
+   * Intersection Observer para activar la sección de Mentora
+   */
+  const setupMentorReveal = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const section = document.querySelector('#mentor-section');
+    if (section) observer.observe(section);
+  };
+
+  // Ejecución inicial y soporte para View Transitions
+  setupMentorReveal();
+  document.addEventListener('astro:after-swap', setupMentorReveal);
+</script>

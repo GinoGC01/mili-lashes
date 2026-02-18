@@ -1,0 +1,159 @@
+---
+/**
+ * Testimonials Component - Lash Expert
+ * Animaciones cinematográficas con revelado escalonado.
+ */
+
+const testimonials = [
+  {
+    name: "Alexa Rodríguez",
+    image: "/images/st-1.webp",
+    quote: "La paciencia de Mili es increíble. Me explicó cada paso hasta que me salió perfecto. ¡Ahora ya tengo mi propia cabina!",
+    stars: 5,
+    highlighted: false,
+  },
+  {
+    name: "Emilia Chen",
+    image: "/images/st-2.webp",
+    quote: "El perfeccionamiento valió cada centavo. Aprendí trucos de retención que nadie más me había enseñado. Mis clientas están felices.",
+    stars: 5,
+    highlighted: true,
+  },
+  {
+    name: "Juana Pérez",
+    image: "/images/st-3.webp",
+    quote: "El kit incluido es súper completo y de excelente calidad. Pude empezar a practicar de inmediato sin gastar extra.",
+    stars: 4.5,
+    highlighted: false,
+  }
+];
+---
+
+<section 
+  id="testimonials-section" 
+  class="py-24 bg-gradient-to-b from-charcoal to-black relative overflow-hidden"
+>
+  <div class="absolute inset-0 geometric-bg opacity-5 pointer-events-none"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-20 reveal-item opacity-0">
+      <h2 class="text-4xl lg:text-6xl font-display font-bold text-white mb-6 uppercase tracking-tight">
+        Real <span class="text-primary italic font-serif lowercase">Stories</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto rounded-full shadow-glow"></div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      {
+        testimonials.map((item, index) => (
+          <div 
+            class:list={[
+              "glass-card-3d p-10 relative group transition-all duration-500 reveal-card opacity-0",
+              { "bg-white/5 border-primary/30 md:-translate-y-4 shadow-[0_0_30px_rgba(217,70,239,0.1)]": item.highlighted }
+            ]}
+            style={`animation-delay: ${0.2 + (index * 0.15)}s`}
+          >
+            <span class:list={[
+              "absolute top-4 right-6 text-6xl font-serif select-none transition-colors duration-500",
+              item.highlighted ? "text-white/10" : "text-primary/20"
+            ]}>"</span>
+
+            <div class="flex items-center gap-4 mb-6">
+              <img 
+                alt={`Estudiante ${item.name}`} 
+                class:list={[
+                  "w-12 h-12 rounded-full object-cover",
+                  item.highlighted ? "border border-primary shadow-glow" : "border border-white/20"
+                ]} 
+                src={item.image} 
+              />
+              <div>
+                <h4 class="font-bold text-white tracking-wide">{item.name}</h4>
+                <div class="flex text-primary">
+                  {[...Array(5)].map((_, i) => {
+                    const fullStar = i < Math.floor(item.stars);
+                    const halfStar = !fullStar && i < item.stars;
+                    return (
+                      <span class="material-symbols-outlined text-[16px] fill-current">
+                        {halfStar ? 'star_half' : fullStar ? 'star' : 'star_border'}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <p class:list={[
+              "font-light italic leading-relaxed",
+              item.highlighted ? "text-white" : "text-slate-300"
+            ]}>
+              "{item.quote}"
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Keyframes de Revelado */
+  @keyframes revealUpBlur {
+    from { 
+      opacity: 0; 
+      transform: translateY(40px);
+      filter: blur(15px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Control de Animación */
+  .reveal-item, .reveal-card {
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+  }
+
+  /* Activación por Clase Active (Intersection Observer) */
+  .active .reveal-item {
+    animation: revealUpBlur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: running;
+  }
+
+  .active .reveal-card {
+    animation: revealUpBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: running;
+  }
+
+  /* Optimizaciones de hardware para el Glassmorphism durante la animación */
+  .glass-card-3d {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+</style>
+
+<script>
+  /**
+   * Intersection Observer para activar la sección de Testimonios
+   */
+  const setupTestimonialsReveal = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Solo animar una vez para mejor UX
+        }
+      });
+    }, { threshold: 0.15 });
+
+    const section = document.querySelector('#testimonials-section');
+    if (section) observer.observe(section);
+  };
+
+  // Inicialización y soporte para Astro View Transitions
+  setupTestimonialsReveal();
+  document.addEventListener('astro:after-swap', setupTestimonialsReveal);
+</script>
