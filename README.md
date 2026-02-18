@@ -44,7 +44,7 @@ En lugar de librerías pesadas como Framer Motion, el proyecto implementa un sis
 ---
 
 ## 📂 Project Structure
-
+```
 ├── public/
 │ ├── images/ # SVGs optimizados y fotografías
 │ └── fonts/ # Playfair Display & Poppins
@@ -58,7 +58,7 @@ En lugar de librerías pesadas como Framer Motion, el proyecto implementa un sis
 │ ├── pages/ # Rutas (index.astro)
 │ └── styles/ # global.css con configuración Tailwind v4
 └── astro.config.mjs
-
+```
 
 ---
 ## 🔧 Development Setup
