@@ -1,12 +1,9 @@
 ---
-/**
- * Mentor Component - Lash Expert
- * Animaciones cinematográficas con revelado por capas.
- */
+
 ---
 
 <section 
-  id="mentor-section" 
+  id="mentor" 
   class="pt-32 bg-charcoal/50 relative overflow-hidden min-h-[700px] flex items-center"
 >
   <div class="absolute inset-0 geometric-bg opacity-5 pointer-events-none"></div>
@@ -127,9 +124,7 @@
 </style>
 
 <script>
-  /**
-   * Intersection Observer para activar la sección de Mentora
-   */
+
   const setupMentorReveal = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -140,7 +135,7 @@
       });
     }, { threshold: 0.2 });
 
-    const section = document.querySelector('#mentor-section');
+    const section = document.querySelector('#mentor');
     if (section) observer.observe(section);
   };
 

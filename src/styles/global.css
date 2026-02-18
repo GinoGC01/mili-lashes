@@ -38,6 +38,9 @@
     overflow: hidden;
   }
 }
+a, button{
+  cursor: pointer;
+}
 
 @layer utilities {
   /* Efecto de texto metálico cromado */

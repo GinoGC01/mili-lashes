@@ -1,8 +1,5 @@
 ---
-/**
- * Testimonials Component - Lash Expert
- * Animaciones cinematográficas con revelado escalonado.
- */
+
 
 const testimonials = [
   {
@@ -30,7 +27,7 @@ const testimonials = [
 ---
 
 <section 
-  id="testimonials-section" 
+  id="testimonials" 
   class="py-24 bg-gradient-to-b from-charcoal to-black relative overflow-hidden"
 >
   <div class="absolute inset-0 geometric-bg opacity-5 pointer-events-none"></div>
@@ -97,7 +94,6 @@ const testimonials = [
 </section>
 
 <style>
-  /* Keyframes de Revelado */
   @keyframes revealUpBlur {
     from { 
       opacity: 0; 
@@ -111,13 +107,11 @@ const testimonials = [
     }
   }
 
-  /* Control de Animación */
   .reveal-item, .reveal-card {
     animation-fill-mode: forwards;
     animation-play-state: paused;
   }
 
-  /* Activación por Clase Active (Intersection Observer) */
   .active .reveal-item {
     animation: revealUpBlur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-play-state: running;
@@ -128,7 +122,6 @@ const testimonials = [
     animation-play-state: running;
   }
 
-  /* Optimizaciones de hardware para el Glassmorphism durante la animación */
   .glass-card-3d {
     will-change: transform, opacity;
     backface-visibility: hidden;
@@ -136,24 +129,21 @@ const testimonials = [
 </style>
 
 <script>
-  /**
-   * Intersection Observer para activar la sección de Testimonios
-   */
+
   const setupTestimonialsReveal = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target); // Solo animar una vez para mejor UX
+          observer.unobserve(entry.target); 
         }
       });
     }, { threshold: 0.15 });
 
-    const section = document.querySelector('#testimonials-section');
+    const section = document.querySelector('#testimonials');
     if (section) observer.observe(section);
   };
 
-  // Inicialización y soporte para Astro View Transitions
   setupTestimonialsReveal();
   document.addEventListener('astro:after-swap', setupTestimonialsReveal);
 </script>
