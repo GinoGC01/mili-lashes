@@ -44,7 +44,7 @@ En lugar de librerías pesadas como Framer Motion, el proyecto implementa un sis
 ---
 
 ## 📂 Project Structure
-```
+```markdown
 ├── public/
 │ ├── images/ # SVGs optimizados y fotografías
 │ └── fonts/ # Playfair Display & Poppins
